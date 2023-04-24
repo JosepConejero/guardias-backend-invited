@@ -93,6 +93,7 @@ const loginUsuario = async (req, res = response) => {
     // confirmar los passwords
     // bcrypt.compareSync compara la contraseña q he escrito con la de la base de datos
     const validPassword = bcrypt.compareSync(password, usuario.password);
+    console.log(validPassword);
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
