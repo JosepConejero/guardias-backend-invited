@@ -33,7 +33,7 @@ router.get("/", getEventos); // Le voy a hacer una petición al /
 router.post(
   "/",
   [
-    check("calendarDate", "La fecha es obligatoria").custom(isDate),
+    /* check("calendarDate", "La fecha es obligatoria").custom(isDate), */
     check("isHoliday", "Es obligatorio indicar si es día de fiesta o no")
       .not()
       .isEmpty(), //el .not().isEmpty() es para que siempre haya información
@@ -54,7 +54,7 @@ router.post(
 router.put(
   "/:id",
   [
-    check("calendarDate", "La fecha es obligatoria").custom(isDate),
+    /* check("calendarDate", "La fecha es obligatoria").custom(isDate), */
     check("isHoliday", "Es obligatorio indicar si es día de fiesta o no")
       .not()
       .isEmpty(), //el .not().isEmpty() es para que siempre haya información
