@@ -40,7 +40,7 @@ const EventoSchema = Schema({
       },
     },
   ],
-  cantTechnicians: [{}],
+  techniciansOut: [{}],
 
   /*   title: { type: String, required: true },
   notes: { type: String },
