@@ -9,7 +9,12 @@ const EventoSchema = Schema({
     unique: false,
   }, */
   //calendarDate: { type: Date, required: true, unique: true, default: Date.now },
-  calendarDate: { type: Date, default: Date.now },
+  /* calendarDate: { type: Date, default: Date.now }, */
+  simpleDate: {
+    day: { type: Number, required: true },
+    month: { type: Number, required: true },
+    year: { type: Number, required: true },
+  },
   technicians: [
     {
       technicianId: {
@@ -19,6 +24,8 @@ const EventoSchema = Schema({
       },
       flcId: { type: Schema.Types.ObjectId, ref: "Curso", required: false },
       isInClientWorkplace: { type: Boolean, required: false },
+      isProvisional: { type: Boolean, required: false },
+      isCancelled: { type: Boolean, required: false },
     },
   ],
   isHoliday: { type: Boolean, default: false },
@@ -33,6 +40,7 @@ const EventoSchema = Schema({
       },
     },
   ],
+  cantTechnicians: [{}],
 
   /*   title: { type: String, required: true },
   notes: { type: String },
