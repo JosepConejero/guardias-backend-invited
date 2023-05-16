@@ -30,6 +30,8 @@ const EventoSchema = Schema({
   ],
   isHoliday: { type: Boolean, default: false },
   isThereOffice2h: { type: Boolean, required: true },
+  isThereExtraMeeting: { type: Boolean, required: true },
+  extraMeetingText: { type: String, required: false },
   note: { type: String, required: false },
   techniciansOut: [
     {
