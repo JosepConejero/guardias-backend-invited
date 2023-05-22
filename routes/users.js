@@ -53,7 +53,7 @@ router.put(
   "/:id",
   [
     check("name", "El nombre es obligatorio").not().isEmpty(), //el .not().isEmpty() es para que siempre haya información
-    check(
+    /* check(
       "shortName",
       "Es obligatorio especificar el nombre breve del trabajador"
     )
@@ -101,7 +101,7 @@ router.put(
       "Es obligatorio especificar si el usuario está de alta en MPE"
     )
       .not()
-      .isEmpty(),
+      .isEmpty(), */
     validarCampos,
   ],
   actualizarUsuario
