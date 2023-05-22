@@ -51,7 +51,7 @@ router.get("/", getUsuarios); // Le voy a hacer una petición al /
 // Actualizar usuario (junto al / podrá haber cualquier cosa; p.e. /23452345234)
 router.put(
   "/:id",
-  /* [
+  [
     check("name", "El nombre es obligatorio").not().isEmpty(), //el .not().isEmpty() es para que siempre haya información
     check(
       "shortName",
@@ -103,7 +103,7 @@ router.put(
       .not()
       .isEmpty(),
     validarCampos,
-  ], */
+  ],
   actualizarUsuario
 );
 
