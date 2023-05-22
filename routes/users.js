@@ -51,9 +51,9 @@ router.get("/", getUsuarios); // Le voy a hacer una petición al /
 // Actualizar usuario (junto al / podrá haber cualquier cosa; p.e. /23452345234)
 router.put(
   "/:id",
-  [
+  /* [
     check("name", "El nombre es obligatorio").not().isEmpty(), //el .not().isEmpty() es para que siempre haya información
-    /* check(
+    check(
       "shortName",
       "Es obligatorio especificar el nombre breve del trabajador"
     )
@@ -101,9 +101,9 @@ router.put(
       "Es obligatorio especificar si el usuario está de alta en MPE"
     )
       .not()
-      .isEmpty(), */
+      .isEmpty(),
     validarCampos,
-  ],
+  ], */
   actualizarUsuario
 );
 
