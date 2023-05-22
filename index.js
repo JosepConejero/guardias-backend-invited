@@ -39,6 +39,7 @@ app.use("/api/auth", require("./routes/auth"));
 // esta será la ruta de los eventos
 app.use("/api/events", require("./routes/events"));
 app.use("/api/courses", require("./routes/courses"));
+app.use("/api/users", require("./routes/users"));
 
 // si no es ninguna de las rutas anteriores, entrará aquí (por el *)
 app.get("*", (req, res) => {
