@@ -37,8 +37,8 @@ const actualizarUsuario = async (req, res = response) => {
 
   try {
     //primero compruebo q el usuario existe
-    console.log(usuarioId);
-    const usuario = await Curso.findById(usuarioId);
+    //console.log(usuarioId);
+    const usuario = await Usuario.findById(usuarioId);
 
     if (!usuario) {
       return res.status(404).json({
