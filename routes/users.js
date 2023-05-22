@@ -54,8 +54,8 @@ router.put(
   [
     check("name", "El nombre es obligatorio").not().isEmpty(), //el .not().isEmpty() es para que siempre haya información
     check(
-      "shortname",
-      "Es obligatorio especificar si el nombre breve del trabajador"
+      "shortName",
+      "Es obligatorio especificar el nombre breve del trabajador"
     )
       .not()
       .isEmpty(),
