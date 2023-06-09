@@ -13,6 +13,7 @@ const UsuarioSchema = Schema({
   canFLC: { type: Boolean, required: true },
   canSeeStatistics: { type: Boolean, required: true },
   isStillWorking: { type: Boolean, required: true },
+  isExternal: { type: Boolean, default: false },
 });
 
 UsuarioSchema.method("toJSON", function () {
@@ -22,3 +23,5 @@ UsuarioSchema.method("toJSON", function () {
 });
 
 module.exports = model("Usuario", UsuarioSchema);
+
+//se añade ppdad isExternal

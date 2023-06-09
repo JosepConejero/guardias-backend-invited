@@ -2,14 +2,6 @@
 const { Schema, model } = require("mongoose");
 
 const EventoSchema = Schema({
-  /* calendarDate: {
-    type: Date,
-    required: false,
-    default: Date.now,
-    unique: false,
-  }, */
-  //calendarDate: { type: Date, required: true, unique: true, default: Date.now },
-  /* calendarDate: { type: Date, default: Date.now }, */
   simpleDate: {
     day: { type: Number, required: true },
     month: { type: Number, required: true },
@@ -22,7 +14,7 @@ const EventoSchema = Schema({
         ref: "Usuario",
         required: false,
       },
-      flcId: { type: Schema.Types.ObjectId, ref: "Curso", required: false },
+      flcId: { type: Schema.Types.ObjectId, ref: "Curso", required: false }, // se cambia de flcId a courseId
       isInClientWorkplace: { type: Boolean, required: false },
       isProvisional: { type: Boolean, required: false },
       isCancelled: { type: Boolean, required: false },
@@ -42,12 +34,6 @@ const EventoSchema = Schema({
       },
     },
   ],
-
-  /*   title: { type: String, required: true },
-  notes: { type: String },
-  start: { type: Date, required: true },
-  end: { type: Date, required: true },
-  user: { type: Schema.Types.ObjectId, ref: "Usuario", required: true }, */
 });
 
 //voy a sobreescribir el método toJSON que es un serializador,

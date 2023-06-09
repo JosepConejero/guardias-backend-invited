@@ -102,6 +102,9 @@ router.put(
     )
       .not()
       .isEmpty(),
+    check("isExternal", "Es obligatorio especificar si el usuario es de MPE")
+      .not()
+      .isEmpty(),
     validarCampos,
   ],
   actualizarUsuario
