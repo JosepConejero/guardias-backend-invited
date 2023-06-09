@@ -14,10 +14,10 @@ const EventoSchema = Schema({
         ref: "Usuario",
         required: false,
       },
-      flcId: { type: Schema.Types.ObjectId, ref: "Curso", required: false }, // se cambia de flcId a courseId
-      isInClientWorkplace: { type: Boolean, required: false },
-      isProvisional: { type: Boolean, required: false },
-      isCancelled: { type: Boolean, required: false },
+      courseId: { type: Schema.Types.ObjectId, ref: "Curso", required: false }, // se cambia de flcId a courseId
+      isInClientWorkplace: { type: Boolean, required: false }, // en oficina / en cliente
+      isProvisional: { type: Boolean, required: false }, //provisional / confirmado
+      isCancelled: { type: Boolean, required: false }, // cancelado / vigente
     },
   ],
   isHoliday: { type: Boolean, default: false },
