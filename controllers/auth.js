@@ -66,8 +66,13 @@ const crearUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
-
-      ...usuario,
+      isAdmin: usuario.isAdmin,
+      isActivated: usuario.isActivated,
+      isDataModifier: usuario.isDataModifier,
+      isTechnician: usuario.isTechnician,
+      canFLC: usuario.canFLC,
+      canSeeStatistics: usuario.canSeeStatistics,
+      isStillWorking: usuario.isStillWorking,
     });
   } catch (error) {
     console.log(error);
@@ -113,7 +118,13 @@ const loginUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
-      ...usuario,
+      isAdmin: usuario.isAdmin,
+      isActivated: usuario.isActivated,
+      isDataModifier: usuario.isDataModifier,
+      isTechnician: usuario.isTechnician,
+      canFLC: usuario.canFLC,
+      canSeeStatistics: usuario.canSeeStatistics,
+      isStillWorking: usuario.isStillWorking,
     });
   } catch (error) {
     console.log(error);
@@ -150,7 +161,13 @@ const revalidarToken = async (req, res = response) => {
     uid,
     name,
     token,
-    ...usuario,
+    isAdmin,
+    isActivated,
+    isDataModifier,
+    isTechnician,
+    canFLC,
+    canSeeStatistics,
+    isStillWorking,
   });
 };
 
