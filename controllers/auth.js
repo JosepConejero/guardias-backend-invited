@@ -67,6 +67,7 @@ const crearUsuario = async (req, res = response) => {
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
       ...usuario,
+      ...usuario,
     });
   } catch (error) {
     console.log(error);
