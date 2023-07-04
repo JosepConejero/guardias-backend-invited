@@ -66,7 +66,7 @@ const crearUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
-      ...usuario,
+
       ...usuario,
     });
   } catch (error) {
@@ -113,6 +113,7 @@ const loginUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
+      ...usuario,
     });
   } catch (error) {
     console.log(error);
@@ -149,6 +150,7 @@ const revalidarToken = async (req, res = response) => {
     uid,
     name,
     token,
+    ...usuario,
   });
 };
 
