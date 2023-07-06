@@ -148,7 +148,17 @@ const loginUsuario = async (req, res = response) => {
 const revalidarToken = async (req, res = response) => {
   // const uid = req.uid;
   // const name = req.name;
-  const { uid, name } = req; // de la request extraigo el uid y el name
+  const {
+    uid,
+    name,
+    isAdmin,
+    isActivated,
+    isDataModifier,
+    isTechnician,
+    canFLC,
+    canSeeStatistics,
+    isStillWorking,
+  } = req; // de la request extraigo el uid y el name
 
   // ahora se genera un nuevo JWT y lo devuelve en esta petición
   const token = await generarJWT(uid, name);
