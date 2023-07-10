@@ -150,14 +150,14 @@ const revalidarToken = async (req, res = response) => {
   // const name = req.name;
   const {
     uid,
-    name /* ,
+    name,
     isAdmin,
     isActivated,
     isDataModifier,
     isTechnician,
     canFLC,
     canSeeStatistics,
-    isStillWorking, */,
+    isStillWorking,
   } = req; // de la request extraigo el uid y el name
 
   // ahora se genera un nuevo JWT y lo devuelve en esta petición
@@ -170,14 +170,14 @@ const revalidarToken = async (req, res = response) => {
     name, // name: name, */ // esto se puso para comprobar
     uid,
     name,
-    token /* ,
+    token,
     isAdmin,
     isActivated,
     isDataModifier,
     isTechnician,
     canFLC,
     canSeeStatistics,
-    isStillWorking, */,
+    isStillWorking,
   });
 };
 
