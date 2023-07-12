@@ -66,6 +66,7 @@ const crearUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
+      shortName: usuario.shortName,
       isAdmin: usuario.isAdmin,
       isActivated: usuario.isActivated,
       isDataModifier: usuario.isDataModifier,
@@ -118,6 +119,7 @@ const loginUsuario = async (req, res = response) => {
       uid: usuario.id, // esto es lo que quiero devolver en la response cuando cree un nuevo usuario
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
+      shortName: usuario.shortName,
       isAdmin: usuario.isAdmin,
       isActivated: usuario.isActivated,
       isDataModifier: usuario.isDataModifier,
