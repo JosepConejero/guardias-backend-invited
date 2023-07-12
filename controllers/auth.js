@@ -151,6 +151,7 @@ const revalidarToken = async (req, res = response) => {
   const {
     uid,
     name,
+    email,
     /*  isAdmin,
     isActivated,
     isDataModifier,
@@ -162,7 +163,7 @@ const revalidarToken = async (req, res = response) => {
   // ahora se genera un nuevo JWT y lo devuelve en esta petición
   const token = await generarJWT(uid, name);
   try {
-    const usuario = await Usuario.findOne({ uid });
+    const usuario = await Usuario.findOne({ email });
     if (!usuario) {
       return res.status(400).json({
         ok: false,
