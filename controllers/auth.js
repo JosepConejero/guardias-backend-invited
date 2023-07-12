@@ -179,6 +179,7 @@ const revalidarToken = async (req, res = response) => {
       uid,
       name,
       token,
+      shortName: usuario.shortName,
       isAdmin: usuario.idAdmin,
       isActivated: usuario.isActivated,
       isDataModifier: usuario.isDataModifier,
