@@ -177,7 +177,6 @@ const revalidarToken = async (req, res = response) => {
     canFLC,
     canSeeStatistics,
     isStillWorking,
-    req,
   });
 };
 
