@@ -159,7 +159,6 @@ const revalidarToken = async (req, res = response) => {
     canSeeStatistics,
     isStillWorking,
   } = req; // de la request extraigo el uid y el name
-  console.log("la request en revalidarToken es: ", req);
   // ahora se genera un nuevo JWT y lo devuelve en esta petición
   const token = await generarJWT(uid, name);
 
@@ -178,6 +177,7 @@ const revalidarToken = async (req, res = response) => {
     canFLC,
     canSeeStatistics,
     isStillWorking,
+    req,
   });
 };
 
