@@ -151,33 +151,49 @@ const revalidarToken = async (req, res = response) => {
   const {
     uid,
     name,
-    isAdmin,
+    /*  isAdmin,
     isActivated,
     isDataModifier,
     isTechnician,
     canFLC,
     canSeeStatistics,
-    isStillWorking,
+    isStillWorking, */
   } = req; // de la request extraigo el uid y el name
   // ahora se genera un nuevo JWT y lo devuelve en esta petición
   const token = await generarJWT(uid, name);
-
-  res.json({
-    ok: true,
-    // msg: "renew (del token)",
-    /*  uid, // uid: uid,
-    name, // name: name, */ // esto se puso para comprobar
-    uid,
-    name,
-    token,
-    isAdmin,
-    isActivated,
-    isDataModifier,
-    isTechnician,
-    canFLC,
-    canSeeStatistics,
-    isStillWorking,
-  });
+  try {
+    const usuario = await Usuario.findOne({ uid });
+    if (!usuario) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Este usuario no existe con este email, es un ente incorpóreo e inanimado, vamos, de mentira total",
+        // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
+      });
+    }
+    res.json({
+      ok: true,
+      // msg: "renew (del token)",
+      /*  uid, // uid: uid,
+      name, // name: name, */ // esto se puso para comprobar
+      uid,
+      name,
+      token,
+      isAdmin: usuario.idAdmin,
+      isActivated: usuario.isActivated,
+      isDataModifier: usuario.isDataModifier,
+      isTechnician: usuario.isTechnician,
+      canFLC: usuario.canFLC,
+      canSeeStatistics: usuario.canSeeStatistics,
+      isStillWorking: usuario.isStillWorking,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      //status(500) es un error interno
+      ok: false,
+      msg: "Por favor, hable con el administrador",
+    });
+  }
 };
 
 module.exports = { crearUsuario, loginUsuario, revalidarToken }; //esto sería lo mismo que crearUsuario:crearUsuario, ....
