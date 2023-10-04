@@ -14,6 +14,7 @@ const {
   crearUsuario,
   loginUsuario,
   revalidarToken,
+  actualizarPasswordUsuario,
 } = require("../controllers/auth");
 const { validarJWT } = require("../middlewares/validar-jwt");
 
@@ -51,5 +52,18 @@ router.post(
 
 // si donde va validarJWT fuera más de un middleware, lo pondría entre []
 router.get("/renew", validarJWT, revalidarToken);
+
+router.put(
+  "/",
+  [
+    //mis middlewares
+    check("email", "El email es obligatorio").isEmail(),
+    check("password", "El password ha de ser de 6 caracteres").isLength({
+      min: 6,
+    }),
+    validarCampos,
+  ],
+  actualizarPasswordUsuario
+);
 
 module.exports = router;

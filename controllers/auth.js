@@ -120,7 +120,7 @@ const loginUsuario = async (req, res = response) => {
       name: usuario.name,
       token: token, // aquí podría ponerse solo token,
       shortName: usuario.shortName,
-      password: usuario.password,
+      //password: usuario.password,
       isAdmin: usuario.isAdmin,
       isActivated: usuario.isActivated,
       isDataModifier: usuario.isDataModifier,
@@ -183,7 +183,7 @@ const revalidarToken = async (req, res = response) => {
       name,
       token,
       shortName: usuario.shortName,
-      password: usuario.password,
+      //password: usuario.password,
       isAdmin: usuario.idAdmin,
       isActivated: usuario.isActivated,
       isDataModifier: usuario.isDataModifier,
@@ -202,4 +202,57 @@ const revalidarToken = async (req, res = response) => {
   }
 };
 
-module.exports = { crearUsuario, loginUsuario, revalidarToken }; //esto sería lo mismo que crearUsuario:crearUsuario, ....
+const actualizarPasswordUsuario = async (req, res = response) => {
+  const { email, password, newPassword } = req.body;
+  try {
+    const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
+
+    if (!usuario) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Este usuario no existe con este email, es un ente incorpóreo e inanimado, vamos, de mentira total",
+        // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
+      });
+    }
+
+    // confirmar los passwords
+    // bcrypt.compareSync compara la contraseña q he escrito con la de la base de datos
+    const currentPassword = bcrypt.compareSync(password, usuario.password);
+    //console.log(validPassword);
+    if (!currentPassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: "La contraseña anterior no es correcta, siempre puede restaurarla o avisar al administrador",
+      });
+    }
+
+    // si llega hasta aquí es pq el usuario y la contraseña eran correctos
+    // aquí se generará nuestro token JWT
+    //const token = await generarJWT(usuario.id, usuario.name);
+
+    const salt = bcrypt.genSaltSync();
+    usuario.password = bcrypt.hashSync(newPassword, salt);
+
+    await usuario.save();
+
+    // una vez creado el JWT
+    res.status(201).json({
+      ok: true,
+      msg: "La constraseña se ha modificado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      //status(500) es un error interno
+      ok: false,
+      msg: "Por favor, hable con el administrador",
+    });
+  }
+};
+
+module.exports = {
+  crearUsuario,
+  loginUsuario,
+  revalidarToken,
+  actualizarPasswordUsuario,
+}; //esto sería lo mismo que crearUsuario:crearUsuario, ....
