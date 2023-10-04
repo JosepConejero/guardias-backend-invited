@@ -203,14 +203,14 @@ const revalidarToken = async (req, res = response) => {
 };
 
 const actualizarPasswordUsuario = async (req, res = response) => {
-  const { email, password, newPassword } = req.body;
+  const { id, password, newPassword } = req.body;
   try {
-    const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
+    const usuario = await Usuario.findOne({ id }); //sería lo mismo que {email: email}
 
     if (!usuario) {
       return res.status(400).json({
         ok: false,
-        msg: "Este usuario no existe con este email, es un ente incorpóreo e inanimado, vamos, de mentira total",
+        msg: "Este usuario no existe con este id, es un ente incorpóreo e inanimado, vamos, de mentira total",
         // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
       });
     }

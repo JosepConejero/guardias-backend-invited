@@ -57,7 +57,7 @@ router.put(
   "/",
   [
     //mis middlewares
-    check("email", "El email es obligatorio").isEmail(),
+    //check("email", "El email es obligatorio").isEmail(),
     check("password", "El password ha de ser de 6 caracteres").isLength({
       min: 6,
     }),
