@@ -206,9 +206,9 @@ const revalidarToken = async (req, res = response) => {
 };
 
 const actualizarPasswordUsuario = async (req, res = response) => {
-  const { uid: id, password, newPassword } = req.body;
+  const { email, password, newPassword } = req.body;
   try {
-    const usuario = await Usuario.findOne({ id }); //sería lo mismo que {email: email}
+    const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
 
     if (!usuario) {
       return res.status(400).json({
