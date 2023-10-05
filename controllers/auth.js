@@ -207,7 +207,7 @@ const revalidarToken = async (req, res = response) => {
 
 const actualizarPasswordUsuario = async (req, res = response) => {
   const { email, password, newPassword } = req.body;
-  console.log("backend: ", { email, password, newPassword });
+  //console.log("backend: ", { email, password, newPassword });
   try {
     const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
 
@@ -237,7 +237,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(newPassword, salt);
 
-    //await usuario.save();
+    await usuario.save();
 
     // una vez creado el JWT
     res.status(201).json({
