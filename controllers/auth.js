@@ -236,7 +236,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(newPassword, salt);
 
-    await usuario.save();
+    //await usuario.save();
 
     // una vez creado el JWT
     res.status(201).json({
