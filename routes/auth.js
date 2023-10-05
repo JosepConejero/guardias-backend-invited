@@ -53,7 +53,7 @@ router.post(
 // si donde va validarJWT fuera más de un middleware, lo pondría entre []
 router.get("/renew", validarJWT, revalidarToken);
 
-router.put(
+router.patch(
   "/",
   [
     //mis middlewares
