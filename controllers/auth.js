@@ -212,8 +212,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
     const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
     //console.log("antes de if (!usuario)");
     if (!usuario) {
-      //return res.status(400).json({
-      return res.status(201).json({
+      return res.status(400).json({
         ok: false,
         msg: "Este usuario no existe con este email, es un ente incorpóreo e inanimado, vamos, de mentira total",
         // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
@@ -228,7 +227,8 @@ const actualizarPasswordUsuario = async (req, res = response) => {
 
     //console.log("antes de if (!currentPassword) ");
     if (!currentPassword) {
-      return res.status(400).json({
+      //return res.status(400).json({
+      return res.status(201).json({
         ok: false,
         msg: "La contraseña anterior no es correcta, siempre puede restaurarla o avisar al administrador",
       });
