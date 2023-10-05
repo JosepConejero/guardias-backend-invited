@@ -210,7 +210,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
   //console.log("backend: ", { email, password, newPassword });
   try {
     const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
-
+    console.log("antes de if (!usuario)");
     if (!usuario) {
       return res.status(400).json({
         ok: false,
@@ -219,10 +219,13 @@ const actualizarPasswordUsuario = async (req, res = response) => {
       });
     }
 
+    console.log("antes de const currentPassord = ");
     // confirmar los passwords
     // bcrypt.compareSync compara la contraseña q he escrito con la de la base de datos
     const currentPassword = bcrypt.compareSync(password, usuario.password);
     //console.log(validPassword);
+
+    console.log("antes de if (!currentPassword) ");
     if (!currentPassword) {
       return res.status(400).json({
         ok: false,
@@ -234,11 +237,15 @@ const actualizarPasswordUsuario = async (req, res = response) => {
     // aquí se generará nuestro token JWT
     //const token = await generarJWT(usuario.id, usuario.name);
 
+    console.log("antes de const salt = ) ");
     const salt = bcrypt.genSaltSync();
+    console.log("antes de usuario.password =  ) ");
     usuario.password = bcrypt.hashSync(newPassword, salt);
 
+    console.log("antes de await usuario.save ");
     await usuario.save();
 
+    console.log("antes de res.status(201).json ");
     // una vez creado el JWT
     res.status(201).json({
       ok: true,
