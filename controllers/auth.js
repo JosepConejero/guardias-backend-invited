@@ -207,6 +207,7 @@ const revalidarToken = async (req, res = response) => {
 
 const actualizarPasswordUsuario = async (req, res = response) => {
   const { email, password, newPassword } = req.body;
+  console.log("backend: ", { email, password, newPassword });
   try {
     const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
 
