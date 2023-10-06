@@ -54,6 +54,8 @@ router.post(
 // si donde va validarJWT fuera más de un middleware, lo pondría entre []
 router.get("/renew", validarJWT, revalidarToken);
 
+router.patch("/:id", restaurarPasswordUsuario);
+
 router.patch(
   "/",
   [
@@ -66,7 +68,5 @@ router.patch(
   ],
   actualizarPasswordUsuario
 );
-
-router.patch("/:id", restaurarPasswordUsuario);
 
 module.exports = router;

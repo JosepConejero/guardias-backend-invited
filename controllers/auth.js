@@ -251,7 +251,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
 const restaurarPasswordUsuario = async (req, res = response) => {
   //const { id } = req.body;
   const usuarioId = req.params.id;
-  console.log(usuarioId);
+
   try {
     //const usuario = await Usuario.findOne({ id });
     const usuario = await Usuario.findById(usuarioId);
@@ -262,7 +262,8 @@ const restaurarPasswordUsuario = async (req, res = response) => {
         // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
       });
     }
-    console.log(process.env.PASSWORD);
+
+    const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(process.env.PASSWORD, salt);
 
     await usuario.save();
