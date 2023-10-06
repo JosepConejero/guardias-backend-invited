@@ -207,10 +207,8 @@ const revalidarToken = async (req, res = response) => {
 
 const actualizarPasswordUsuario = async (req, res = response) => {
   const { email, password, newPassword } = req.body;
-  //console.log("backend: ", { email, password, newPassword });
   try {
     const usuario = await Usuario.findOne({ email }); //sería lo mismo que {email: email}
-    //console.log("antes de if (!usuario)");
     if (!usuario) {
       return res.status(400).json({
         ok: false,
@@ -219,13 +217,9 @@ const actualizarPasswordUsuario = async (req, res = response) => {
       });
     }
 
-    //console.log("antes de const currentPassord = ");
-    // confirmar los passwords
     // bcrypt.compareSync compara la contraseña q he escrito con la de la base de datos
     const currentPassword = bcrypt.compareSync(password, usuario.password);
-    //console.log(validPassword);
 
-    //console.log("antes de if (!currentPassword) ");
     if (!currentPassword) {
       //return res.status(400).json({
       return res.status(201).json({
@@ -234,23 +228,46 @@ const actualizarPasswordUsuario = async (req, res = response) => {
       });
     }
 
-    // si llega hasta aquí es pq el usuario y la contraseña eran correctos
-    // aquí se generará nuestro token JWT
-    //const token = await generarJWT(usuario.id, usuario.name);
-
-    //console.log("antes de const salt = ) ");
     const salt = bcrypt.genSaltSync();
-    //console.log("antes de usuario.password =  ) ");
     usuario.password = bcrypt.hashSync(newPassword, salt);
 
-    //console.log("antes de await usuario.save ");
     await usuario.save();
 
-    //console.log("antes de res.status(201).json ");
-    // una vez creado el JWT
     res.status(201).json({
       ok: true,
       msg: "La constraseña se ha modificado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      //status(500) es un error interno
+      ok: false,
+      msg: "Por favor, hable con el administrador",
+    });
+  }
+};
+
+const restaurarPasswordUsuario = async (req, res = response) => {
+  //const { id } = req.body;
+  const usuarioId = req.params.id;
+  try {
+    //const usuario = await Usuario.findOne({ id });
+    const usuario = await Usuario.findById(usuarioId);
+    if (!usuario) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Este usuario no existe con este id.",
+        // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
+      });
+    }
+
+    usuario.password = bcrypt.hashSync(process.env.PWD, salt);
+
+    await usuario.save();
+
+    res.status(201).json({
+      ok: true,
+      msg: "La constraseña se ha restaurado correctamente",
     });
   } catch (error) {
     console.log(error);
@@ -267,4 +284,5 @@ module.exports = {
   loginUsuario,
   revalidarToken,
   actualizarPasswordUsuario,
+  restaurarPasswordUsuario,
 }; //esto sería lo mismo que crearUsuario:crearUsuario, ....

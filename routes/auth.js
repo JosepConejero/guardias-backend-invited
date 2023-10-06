@@ -15,6 +15,7 @@ const {
   loginUsuario,
   revalidarToken,
   actualizarPasswordUsuario,
+  restaurarPasswordUsuario,
 } = require("../controllers/auth");
 const { validarJWT } = require("../middlewares/validar-jwt");
 
@@ -65,5 +66,7 @@ router.patch(
   ],
   actualizarPasswordUsuario
 );
+
+router.patch("/:id", restaurarPasswordUsuario);
 
 module.exports = router;
