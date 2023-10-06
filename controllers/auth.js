@@ -1,5 +1,6 @@
 // const express = require("express");
 const { response } = require("express");
+require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const Usuario = require("../models/Usuario");
 const { generarJWT } = require("../helpers/jwt");
@@ -261,8 +262,8 @@ const restaurarPasswordUsuario = async (req, res = response) => {
         // he de evitar dar pistas de si es el usuario o la contraseña lo que falla, pero aquí, para mí, me ha interesado ponerlo
       });
     }
-    console.log(process.env.PWD);
-    usuario.password = bcrypt.hashSync(process.env.PWD, salt);
+    console.log(process.env.PASSWORD);
+    usuario.password = bcrypt.hashSync(process.env.PASSWORD, salt);
 
     await usuario.save();
 
