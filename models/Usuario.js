@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const UsuarioSchema = Schema({
@@ -23,5 +22,3 @@ UsuarioSchema.method("toJSON", function () {
 });
 
 module.exports = model("Usuario", UsuarioSchema);
-
-//se añade ppdad isExternal
