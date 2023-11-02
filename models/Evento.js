@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const EventoSchema = Schema({
@@ -14,10 +13,8 @@ const EventoSchema = Schema({
         ref: "Usuario",
         required: false,
       },
-      courseId: { type: Schema.Types.ObjectId, ref: "Curso", required: false }, // se cambia de flcId a courseId
-      isInClientWorkplace: { type: Boolean, required: false }, // en oficina / en cliente
-      /*   isProvisional: { type: Boolean, required: false }, //provisional / confirmado
-      isCancelled: { type: Boolean, required: false }, // cancelado / vigente */
+      courseId: { type: Schema.Types.ObjectId, ref: "Curso", required: false },
+      isInClientWorkplace: { type: Boolean, required: false },
       uniqueId: { type: String, required: false },
     },
   ],
@@ -37,15 +34,10 @@ const EventoSchema = Schema({
   ],
 });
 
-//voy a sobreescribir el método toJSON que es un serializador,
-//que se aplica cuando grabo en la base de datos??
 EventoSchema.method("toJSON", function () {
-  //con esto solo sobreescribo el toJSON, q no usamos explícitamente pero sí lo usa mongoose implícitamente
-  const { __v, _id, ...object } = this.toObject(); //extraeré __v, _id y todo lo demás va a estar almacenado en object
+  const { __v, _id, ...object } = this.toObject();
   object.id = _id;
   return object;
 });
-//lo escribo con function pq necesito referencia al this, que hace refencia al objeto q estoy serializando
-//y de ahí extraeré varias cosas (con this tengo acceso a todas las ppdades)
 
 module.exports = model("Evento", EventoSchema);
