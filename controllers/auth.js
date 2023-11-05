@@ -21,10 +21,13 @@ const crearUsuario = async (req, res = response) => {
 
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(password, salt);
-    usuario.shortName = "";
+    //usuario.shortName = "";
+    usuario.shortName = usuario.name.replace(" ", "").slice(0, 8).toUpperCase();
     usuario.isAdmin = false;
-    usuario.isActivated = false;
-    usuario.isDataModifier = false;
+    //usuario.isActivated = false;
+    usuario.isActivated = true;
+    //usuario.isDataModifier = false;
+    usuario.isDataModifier = true;
     usuario.isTechnician = false;
     usuario.canFLC = false;
     usuario.canSeeStatistics = false;
