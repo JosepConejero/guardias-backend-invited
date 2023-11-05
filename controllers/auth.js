@@ -169,7 +169,7 @@ const actualizarPasswordUsuario = async (req, res = response) => {
 
     res.status(201).json({
       ok: true,
-      msg: "La constraseña se ha modificado correctamente",
+      msg: "La contraseña se ha modificado correctamente",
     });
   } catch (error) {
     console.log(error);
@@ -199,7 +199,7 @@ const restaurarPasswordUsuario = async (req, res = response) => {
 
     res.status(201).json({
       ok: true,
-      msg: "La constraseña se ha restaurado correctamente",
+      msg: "La contraseña se ha restaurado correctamente",
     });
   } catch (error) {
     console.log(error);
